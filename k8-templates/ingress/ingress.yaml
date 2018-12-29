@@ -1,0 +1,32 @@
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: example-ingress
+#  annotations:
+#    ingress.kubernetes.io/rewrite-target: /
+#spec:
+#  tls:
+#  - hosts:
+#    - k8sworker.local
+#    secretName: testsecret-tls
+#  rules:
+#  - host: k8sworker.local
+#    http:
+#      paths:
+#          backend:
+#            serviceName: webserver-service
+#            servicePort: 5679
+#        - path: /webserver
+#          backend:
+#            serviceName: database-service
+#            servicePort: 8081
+#        - path: /db
+#          backend:
+#            serviceName: my-nginx-service
+#            servicePort: 80
+#  - host: banana.k8sworker.local
+#    http:
+#        paths:
+#        - backend:
+#            serviceName: banana-service
+#            servicePort: 5678

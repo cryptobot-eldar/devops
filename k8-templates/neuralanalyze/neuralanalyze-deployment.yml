@@ -1,0 +1,20 @@
+#---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: neuralanalyze
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: neuralanalyze
+    spec:
+      containers:
+      - name: neuralanalyze
+        image: egaraev/neuralanalyze:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.05"
+            memory: 100Mi

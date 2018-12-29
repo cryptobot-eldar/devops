@@ -1,0 +1,23 @@
+#---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: webserver
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      containers:
+      - name: webserver
+        image: egaraev/webinterface:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8181
+        resources:
+          limits:
+            cpu: "0.05"
+            memory: 100Mi

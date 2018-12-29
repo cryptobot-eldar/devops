@@ -1,0 +1,20 @@
+#---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: heikin
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: heikin
+    spec:
+      containers:
+      - name: heikin
+        image: egaraev/heikin:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "0.05"
+            memory: 100Mi

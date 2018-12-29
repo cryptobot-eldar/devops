@@ -1,0 +1,34 @@
+#---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: database
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      volumes:
+      - name: database-nfs-pv
+        persistentVolumeClaim:
+          claimName: database-nfs-claim0
+      containers:
+      - name: database
+        image: egaraev/mysql-eldar:demo
+        imagePullPolicy: Always
+        ports:
+        - name: sql
+          containerPort: 336
+        - name: phpmyadmin
+          containerPort: 49161
+        - name: ssh
+          containerPort: 49160
+        resources:
+          limits:
+            cpu: "0.1"
+            memory: 100Mi
+        volumeMounts:
+        - name: database-nfs-pv
+          mountPath: /var/lib/mysql

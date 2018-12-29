@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: database-nfs-pv
+spec:
+  claimRef:
+    namespace: crypto
+    name: database-nfs-claim0
+  storageClassName: nfs-storage
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.1.128
+    path: "/exports/nfsshare/mysqldb"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: database-nfs-claim0
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: nfs-storage
+  resources:
+    requests:
+      storage: 5Gi
