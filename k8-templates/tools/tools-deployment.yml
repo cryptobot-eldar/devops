@@ -10,6 +10,10 @@ spec:
       labels:
         app: tools
     spec:
+      volumes:
+      - name: tools-nfs-pv
+        persistentVolumeClaim:
+          claimName: tools-nfs-claim0
       containers:
       - name: tools
         image: egaraev/tools:latest
@@ -18,3 +22,6 @@ spec:
           limits:
             cpu: "0.05"
             memory: 100Mi
+        volumeMounts:
+        - name: tools-nfs-pv
+          mountPath: /usr/local/bin

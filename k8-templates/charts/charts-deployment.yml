@@ -10,6 +10,10 @@ spec:
       labels:
         app: charts
     spec:
+      volumes:
+      - name: charts-nfs-pv
+        persistentVolumeClaim:
+          claimName: charts-nfs-claim0
       containers:
       - name: charts
         image: egaraev/charts:latest
@@ -18,3 +22,6 @@ spec:
           limits:
             cpu: "0.05"
             memory: 100Mi
+        volumeMounts:
+        - name: charts-nfs-pv
+          mountPath: /var/www/cgi-bin
