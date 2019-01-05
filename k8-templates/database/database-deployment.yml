@@ -5,6 +5,9 @@ metadata:
   name: database
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+       app: database
   template:
     metadata:
       labels:
@@ -16,19 +19,22 @@ spec:
           claimName: database-nfs-claim0
       containers:
       - name: database
-        image: egaraev/mysql-eldar:demo
+#        image: egaraev/mysql-eldar:demo
+#        image: wnameless/mysql-phpmyadmin
+        image: mysql/mysql-server:5.5.50
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: '123456'
+#        - name: MYSQL_DATABASE
+#          value: 'cryptodb'
         imagePullPolicy: Always
         ports:
         - name: sql
-          containerPort: 336
-        - name: phpmyadmin
-          containerPort: 49161
-        - name: ssh
-          containerPort: 49160
-        resources:
-          limits:
-            cpu: "0.1"
-            memory: 100Mi
+          containerPort: 3306
+#        resources:
+#          limits:
+#            cpu: "0.2"
+#            memory: 200Mi
         volumeMounts:
         - name: database-nfs-pv
           mountPath: /var/lib/mysql

@@ -13,6 +13,9 @@ spec:
       containers:
       - name: webserver
         image: egaraev/webinterface:latest
+#        env:
+#        - name: DATABASE_HOST
+#          value: database-service
         imagePullPolicy: Always
         ports:
         - name: http
