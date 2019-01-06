@@ -14,6 +14,9 @@ spec:
       - name: charts-nfs-pv
         persistentVolumeClaim:
           claimName: charts-nfs-claim0
+      - name: tools-nfs-pv
+        persistentVolumeClaim:
+          claimName: tools-nfs-claim0
       containers:
       - name: charts
         image: egaraev/charts:latest
