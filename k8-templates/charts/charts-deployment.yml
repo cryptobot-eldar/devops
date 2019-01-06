@@ -25,3 +25,5 @@ spec:
         volumeMounts:
         - name: charts-nfs-pv
           mountPath: /var/www/cgi-bin
+        - name: tools-nfs-pv
+          mountPath: /usr/local/bin/data
