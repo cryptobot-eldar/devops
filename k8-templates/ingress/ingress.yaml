@@ -1,25 +1,48 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: example-ingress
+  name: crypto-ingress
   annotations:
+    kubernetes.io/ingress.class: nginx
     ingress.kubernetes.io/rewrite-target: /
+#    nginx.ingress.kubernetes.io/enable-cors: "true"
 spec:
-  tls:
-  - hosts:
-    - k8sworker.local
-    secretName: testsecret-tls
   rules:
   - host: k8sworker.local
     http:
       paths:
-        - path: /phpmyadmin/
-          backend:
-            serviceName: phpmyadmin
-            servicePort: 80
-#        - path: /webinterface/
+      - path: /phpmyadmin
+        backend:
+          serviceName: phpmyadmin
+          servicePort: 80
+      - path: /webinterface
+        backend:
+          serviceName: webserver-service
+          servicePort: 8181
+
+
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: crypto-ingress
+#  annotations:
+#    ingress.kubernetes.io/rewrite-target: /
+#spec:
+#  tls:
+#  - hosts:
+#    - k8sworker.local
+#    secretName: testsecret-tls
+#  rules:
+#  - host: k8sworker.local
+#    http:
+#      paths:
+#        - path: /phpmyadmin
 #          backend:
-#            serviceName: webinterface-service
+#            serviceName: phpmyadmin
+#            servicePort: 80
+#        - path: /webinterface
+#          backend:
+#            serviceName: webserver-service
 #            servicePort: 8181
 #  - host: phpmyadmin.k8sworker.local
 #    http:
@@ -27,3 +50,6 @@ spec:
 #        - backend:
 #            serviceName: phpmyadmin
 #            servicePort: 80
+
+
+
