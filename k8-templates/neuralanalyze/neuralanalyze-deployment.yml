@@ -10,6 +10,10 @@ spec:
       labels:
         app: neuralanalyze
     spec:
+      volumes:
+      - name: neural-nfs-pv
+        persistentVolumeClaim:
+          claimName: neural-nfs-claim0
       containers:
       - name: neuralanalyze
         image: egaraev/neuralanalyze:latest
@@ -18,3 +22,6 @@ spec:
           limits:
             cpu: "0.05"
             memory: 100Mi
+        volumeMounts:
+        - name: neural-nfs-pv
+          mountPath: /usr/local/bin/data
