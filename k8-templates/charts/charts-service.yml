@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: webserver-service
+  name: charts-service
 spec:
 #  type: NodePort
   ports:
-    - port: 8888
-      targetPort: 8181
+    - port: 80
+      targetPort: 80
   selector:
-    app: webserver
+    app: charts
