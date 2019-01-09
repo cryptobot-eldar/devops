@@ -16,7 +16,7 @@ spec:
         - path: /view
           backend:
             serviceName: charts-service
-            servicePort: 80
+            servicePort: 888
   - host: webinterface.kubernetes.local
     http:
         paths:
@@ -30,4 +30,10 @@ spec:
             serviceName: phpmyadmin
             servicePort: 808
 
+  - host: web.kubernetes.local
+    http:
+        paths:
+        - backend:
+            serviceName: charts-service
+            servicePort: 888
 
