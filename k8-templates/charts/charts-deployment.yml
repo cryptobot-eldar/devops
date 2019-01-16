@@ -27,6 +27,6 @@ spec:
             memory: 100Mi
         volumeMounts:
         - name: charts-nfs-pv
-          mountPath: /var/www/cgi-bin
+          mountPath: /var/www/html/images
         - name: tools-nfs-pv
           mountPath: /usr/local/bin/data
