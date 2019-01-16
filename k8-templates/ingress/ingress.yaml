@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: crypto-ingress
   annotations:
-    ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   tls:
   - hosts:
