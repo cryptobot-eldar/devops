@@ -20,8 +20,8 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            cpu: "0.10"
-            memory: 300Mi
+            cpu: "0.2"
+            memory: 400Mi
         volumeMounts:
         - name: neural-nfs-pv
           mountPath: /usr/local/bin/data

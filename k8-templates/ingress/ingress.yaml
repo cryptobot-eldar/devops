@@ -13,7 +13,7 @@ spec:
   - host: kubernetes.local
     http:
       paths:
-        - path: /view
+        - path:
           backend:
             serviceName: charts-service
             servicePort: 888
