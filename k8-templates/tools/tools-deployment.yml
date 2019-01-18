@@ -21,7 +21,7 @@ spec:
         resources:
           limits:
             cpu: "0.05"
-            memory: 100Mi
+            memory: 300Mi
         volumeMounts:
         - name: tools-nfs-pv
           mountPath: /usr/local/bin/data
