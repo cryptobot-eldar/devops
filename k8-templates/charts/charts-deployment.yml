@@ -24,7 +24,7 @@ spec:
         resources:
           limits:
             cpu: "0.05"
-            memory: 200Mi
+            memory: 100Mi
         volumeMounts:
         - name: charts-nfs-pv
           mountPath: /var/www/html/images

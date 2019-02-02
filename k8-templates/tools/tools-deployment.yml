@@ -20,8 +20,8 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            cpu: "0.1"
-            memory: 300Mi
+            cpu: "0.5"
+            memory: 500Mi
         volumeMounts:
         - name: tools-nfs-pv
           mountPath: /usr/local/bin/data
