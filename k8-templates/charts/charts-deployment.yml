@@ -23,8 +23,8 @@ spec:
         imagePullPolicy: Always
         resources:
           limits:
-            cpu: "0.05"
-            memory: 100Mi
+            cpu: "0.1"
+            memory: 300Mi
         volumeMounts:
         - name: charts-nfs-pv
           mountPath: /var/www/html/images
