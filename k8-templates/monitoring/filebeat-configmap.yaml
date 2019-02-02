@@ -33,7 +33,7 @@ data:
                 - type: docker
                   document_type: docker_logs
                   containers.ids:
-                    - "*"
+                    - " /var/lib/docker/containers/*"
                   exclude_lines: ["^\\s+[\\-`('.|_]"]  # drop asciiart lines
                   exclude_lines: ['^DBG']
                   exclude_lines: ['^DEBUG']

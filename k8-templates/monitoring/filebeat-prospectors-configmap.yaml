@@ -10,7 +10,7 @@ data:
      - type: docker
        enabled: false
        containers.ids:
-       - "*"
+       - "/var/lib/docker/containers/*/*.log"
        document_type: docker_logs
        processors:
          - add_kubernetes_metadata:
