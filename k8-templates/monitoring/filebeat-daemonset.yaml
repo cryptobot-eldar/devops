@@ -1,0 +1,113 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: filebeat
+  labels:
+    k8s-app: filebeat
+    kubernetes.io/cluster-service: "true"
+spec:
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        k8s-app: filebeat
+        kubernetes.io/cluster-service: "true"
+    spec:
+      imagePullSecrets:
+        - name: myregistrykey
+      terminationGracePeriodSeconds: 30
+      tolerations:
+        - key: "node-role.kubernetes.io/master"
+          effect: "NoSchedule"
+          operator: "Exists"
+        - key: "node-role.kubernetes.io/orchpln"
+          effect: "NoSchedule"
+          operator: "Exists"
+        - key: "node-role.kubernetes.io/etcd"
+          effect: "NoExecute"
+          operator: "Exists"
+      containers:
+      - name: filebeat
+        image: docker.elastic.co/beats/filebeat:6.5.4
+        #imagePullPolicy: IfNotPresent
+        args: [
+          "-c", "/etc/filebeat.yml",
+          "-e",
+        ]
+        env:
+        - name: CONFIG_VERSION
+          value: '3.0'
+        - name: MONITORING_NAMESPACE
+          value: 'crypto'
+        - name: ELASTICSEARCH_HOST
+          value: '192.168.1.128'
+        - name: ELASTICSEARCH_PORT
+          value: '9200'
+        - name: CUSTOMER
+          value: 'cryptobot'
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        resources:
+          limits:
+            cpu: 50m
+            memory: 500Mi
+        securityContext:
+          runAsUser: 0
+        volumeMounts:
+        - name: config
+          mountPath: /etc/filebeat.yml
+          readOnly: true
+          subPath: filebeat.yml
+        - name: prospectors
+          mountPath: /usr/share/filebeat/prospectors.d
+          readOnly: true
+        - name: modules
+          mountPath: /usr/share/filebeat/modules.d
+          readOnly: true
+        - name: data
+          mountPath: /usr/share/filebeat/data
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: varlog
+          mountPath: /var/log
+          readOnly: true
+        - name: socket
+          mountPath: /var/run/docker.sock
+        - name: docker-log
+          mountPath: /var/log/containers
+          readOnly: true
+      volumes:
+      - name: config
+        configMap:
+          name: filebeat-config
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: prospectors
+        configMap:
+          name: filebeat-prospectors
+      - name: modules
+        configMap:
+          name: filebeat-modules
+      - name: data
+        hostPath:
+          path: /filebeat_data
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: socket
+        hostPath:
+          path: /var/run/docker.sock
+      - name: docker-log
+        hostPath:
+          path: /var/lib/docker/containers
