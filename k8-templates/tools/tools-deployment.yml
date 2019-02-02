@@ -19,9 +19,9 @@ spec:
         image: egaraev/tools:latest
         imagePullPolicy: Always
         resources:
-          limits:
-            cpu: "0.5"
-            memory: 500Mi
+#          limits:
+#            cpu: "0.5"
+#            memory: 500Mi
         volumeMounts:
         - name: tools-nfs-pv
           mountPath: /usr/local/bin/data

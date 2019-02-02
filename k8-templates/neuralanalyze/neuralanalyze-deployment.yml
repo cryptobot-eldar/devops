@@ -19,9 +19,9 @@ spec:
         image: egaraev/neuralanalyze:latest
         imagePullPolicy: Always
         resources:
-          limits:
-            cpu: "0.5"
-            memory: 400Mi
+#          limits:
+#            cpu: "0.5"
+#            memory: 400Mi
         volumeMounts:
         - name: neural-nfs-pv
           mountPath: /usr/local/bin/data
