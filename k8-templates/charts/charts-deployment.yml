@@ -17,6 +17,9 @@ spec:
       - name: tools-nfs-pv
         persistentVolumeClaim:
           claimName: tools-nfs-claim0
+      - name: tz-config
+        hostPath:
+          path: /usr/share/zoneinfo/Europe/Warsaw
       containers:
       - name: charts
         image: egaraev/charts:latest
@@ -30,3 +33,5 @@ spec:
           mountPath: /var/www/html/images
         - name: tools-nfs-pv
           mountPath: /usr/local/bin/data
+        - name: tz-config
+          mountPath: /etc/localtime

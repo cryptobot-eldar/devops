@@ -14,6 +14,9 @@ spec:
       - name: neural-nfs-pv
         persistentVolumeClaim:
           claimName: neural-nfs-claim0
+      - name: tz-config
+        hostPath:
+          path: /usr/share/zoneinfo/Europe/Warsaw
       containers:
       - name: neuralanalyze
         image: egaraev/neuralanalyze:latest
@@ -25,3 +28,5 @@ spec:
         volumeMounts:
         - name: neural-nfs-pv
           mountPath: /usr/local/bin/data
+        - name: tz-config
+          mountPath: /etc/localtime
