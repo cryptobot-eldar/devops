@@ -18,10 +18,3 @@ spec:
 #          limits:
 #            cpu: "0.4"
 #            memory: 400Mi
-        volumeMounts:
-        - name: tz-config
-            mountPath: /etc/localtime
-      volumes:
-      - name: tz-config
-        hostPath:
-          path: /usr/share/zoneinfo/Europe/Warsaw

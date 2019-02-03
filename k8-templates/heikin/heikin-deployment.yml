@@ -17,11 +17,5 @@ spec:
 #        resources:
 #          limits:
 #            cpu: "1"
-        volumeMounts:
-        - name: tz-config
-            mountPath: /etc/localtime
-      volumes:
-      - name: tz-config
-        hostPath:
-          path: /usr/share/zoneinfo/Europe/Warsaw
+
 
