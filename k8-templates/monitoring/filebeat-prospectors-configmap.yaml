@@ -7,13 +7,13 @@ metadata:
     kubernetes.io/cluster-service: "true"
 data:
   kubernetes.yml: |-
-     - type: docker
-       enabled: false
-       containers.ids:
-       - "/var/lib/docker/containers/*/*.log"
-       document_type: docker_logs
-       processors:
-         - add_kubernetes_metadata:
-             in_cluster: true
-     - type: stdin
-       enabled: false
+#     - type: docker
+#       enabled: false
+#       containers.ids:
+#       - "*"
+#       document_type: docker_logs
+#       processors:
+#         - add_kubernetes_metadata:
+#             in_cluster: true
+#     - type: stdin
+#       enabled: false
