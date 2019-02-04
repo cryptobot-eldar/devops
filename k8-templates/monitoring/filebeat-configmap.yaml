@@ -27,8 +27,8 @@ data:
                 or:
                   - equals:
                       kubernetes.namespace: kube-system
-#                  - equals:
-#                      kubernetes.namespace: crypto
+                  - equals:
+                      kubernetes.namespace: kube-public 
               config:
                 - type: docker
                   document_type: docker_logs
