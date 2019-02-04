@@ -25,9 +25,9 @@ data:
           templates:
             - condition.not:
                 or:
-                  - equals:
+                  - contains:
                       kubernetes.namespace: kube-system
-                  - equals:
+                  - contains:
                       kubernetes.namespace: kube-public 
               config:
                 - type: docker
